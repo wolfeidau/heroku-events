@@ -1,5 +1,5 @@
 var fs = require('fs')
-var LogParser = require('../lib/heroku_log_parser.js')
+var LogParser = require('../index.js')
 var log = require('debug')('test')
 
 var expect = require('chai').expect

@@ -1,0 +1,1 @@
+module.exports = require('./lib/heroku_log_parser.js')
