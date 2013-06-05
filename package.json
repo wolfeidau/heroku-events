@@ -20,7 +20,8 @@
     "mocha": "~1.9.0",
     "sinon": "~1.6.0",
     "chai": "~1.5.0",
-    "profiler": "git://github.com/wolfeidau/node-profiler.git#updated_v8_to_3.14.5.8"
+    "profiler": "git://github.com/wolfeidau/node-profiler.git#updated_v8_to_3.14.5.8",
+    "split": "~0.2.5"
   },
   "dependencies": {
     "through": "~2.3.4",

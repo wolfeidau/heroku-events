@@ -12,6 +12,7 @@ To read the a syslog file and create a model representing the state of your appl
 
 ```javascript
 var fs = require('fs')
+var split = require('split')
 var LogParser = require('heroku-events')
 
 // model for dynos hosts
@@ -28,9 +29,18 @@ logParser
     })
 
 var st = fs.createReadStream('/var/log/heroku.log')
-st.pipe(logParser)
+st.pipe(split()).pipe(logParser)
 
 ```
+
+The events which are currently fired are:
+
+* newservice - Fired when a new log sink identifier is detected indicating a new app was discovered.
+* statechangeservice - Fired when a heroku dyno state change is read.
+* up - Fired when an up heroku dyno state change is read.
+* down - Fired when a down heroku dyno state change is read.
+* starting - Fired when a starting heroku dyno state change is read.
+* crashed - Fired when a crashed heroku dyno state change is read.
 
 # Future Work
 
