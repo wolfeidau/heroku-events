@@ -26,19 +26,23 @@ describe('Parse a log file', function () {
   it('should fire up events when dynos start', function (done) {
 
     var logParser = new LogParser(model)
-    var upCount = 0
-    var start;
+    var starts = [], stops  = [];
 
     logParser.on('dyno-up', function(data){
-      upCount++
-      start = data
+      starts.push(data)
+    })
+
+    logParser.on('dyno-down', function(data){
+      stops.push(data)
     })
 
     fs.createReadStream('./test/state.log')
       .on('end',function () {
-        expect(start).to.exist
-        expect(start.dyno['web.1']).to.exist
-        expect(upCount).to.equal(2)
+        expect(starts).to.exist
+        expect(starts[1].dyno['web.1']).to.exist
+        expect(starts.length).to.equal(2)
+        expect(stops[1].dyno['web.1']).to.exist
+        expect(stops.length).to.equal(2)
         done()
       }).pipe(split()).pipe(logParser)
 
