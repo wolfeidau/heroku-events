@@ -29,7 +29,7 @@ describe('Parse a log file', function () {
     var upCount = 0
     var start;
 
-    logParser.on('up', function(data){
+    logParser.on('dyno-up', function(data){
       upCount++
       start = data
     })

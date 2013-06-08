@@ -21,11 +21,11 @@ var model = {}
 var logParser = new LogParser(model)
 
 logParser
-    .on('newservice', function(service){
-        console.log('newservice', service)
+    .on('app-discovered', function(app){
+        console.log('app-discovered', app)
     })
-    .on('statechangeservice', function(service){
-        console.log('statechangeservice', service)
+    .on('app-change', function(app){
+        console.log('app-change', app)
     })
 
 var st = fs.createReadStream('/var/log/heroku.log')
@@ -35,17 +35,16 @@ st.pipe(split()).pipe(logParser)
 
 The events which are currently fired are:
 
-* newservice - Fired when a new log sink identifier is detected indicating a new app was discovered.
-* statechangeservice - Fired when a heroku dyno state change is read.
-* up - Fired when an up heroku dyno state change is read.
-* down - Fired when a down heroku dyno state change is read.
-* starting - Fired when a starting heroku dyno state change is read.
-* crashed - Fired when a crashed heroku dyno state change is read.
+* `app-discovered` - Fired when a new log sink identifier is detected indicating a new app was discovered.
+* `app-change` - Fired when a heroku dyno state change is read.
+* `dyno-up` - Fired when an up heroku dyno state change is read.
+* `dyno-down` - Fired when a down heroku dyno state change is read.
+* `dyno-starting` - Fired when a starting heroku dyno state change is read.
+* `dyno-crashed` - Fired when a crashed heroku dyno state change is read.
 
 # Future Work
 
 Need to:
 
 * rewrite the two core parts to simplify and clean up how the parsing and events work.
-* come up with better names and structure for the change events.
 
