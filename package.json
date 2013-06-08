@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "through": "~2.3.4",
-    "debug": "~0.7.2"
+    "debug": "~0.7.2",
+    "lodash": "~1.2.1"
   }
 }
