@@ -1,6 +1,6 @@
 {
   "name": "heroku-events",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "This module will mine heroku dyno related events out of a syslog file.",
   "main": "index.js",
   "scripts": {
