@@ -59,6 +59,31 @@ describe('LogParser', function () {
 
   describe('plugins', function () {
 
+    it('should only check plugins till the first one matches', function (done) {
+
+      var model = {}
+      var logParser = new LogParser(model)
+      logParser.register(heroku_events.selectors.statChange)
+
+      var counter = 0
+
+      function logware(logParser) {
+        return function logwareEvent(data) {
+          counter++
+        }
+      }
+
+      logParser.register(logware)
+
+      fs.createReadStream('./test/state.log')
+        .on('end',function () {
+          expect(counter).to.equal(4)
+          done()
+        }).pipe(split()).pipe(logParser)
+
+
+    })
+
     it('should enable plugins for raising discovery events.', function (done) {
 
       var model = {}
