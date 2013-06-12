@@ -59,8 +59,7 @@ describe('LogParser', function () {
 
   describe('plugins', function () {
 
-
-    it('should enable plugins for raising discovery events.', function () {
+    it('should enable plugins for raising discovery events.', function (done) {
 
       var model = {}
       var logParser = new LogParser(model)
